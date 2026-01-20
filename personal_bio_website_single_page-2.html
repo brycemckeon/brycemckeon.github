@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Bryce McKeon — bio, projects, and contact." />
+  <title>Bryce McKeon</title>
+  <style>
+    :root{
+      --bg:#0b1020;
+      --card:#121a33;
+      --text:#e7ecff;
+      --muted:#aab3d6;
+      --accent:#7c5cff;
+      --accent2:#2ee59d;
+      --border:rgba(255,255,255,.10);
+      --shadow: 0 20px 60px rgba(0,0,0,.35);
+      --radius:18px;
+      --max:1040px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--text);
+      background:
+        radial-gradient(1200px 700px at 15% 0%, rgba(124,92,255,.25), transparent 55%),
+        radial-gradient(900px 600px at 90% 10%, rgba(46,229,157,.18), transparent 50%),
+        radial-gradient(1000px 700px at 50% 100%, rgba(124,92,255,.12), transparent 55%),
+        var(--bg);
+      line-height:1.55;
+    }
+    a{color:inherit; text-decoration:none}
+    .wrap{max-width:var(--max); margin:0 auto; padding:28px 18px 80px}
+
+    /* Top nav */
+    .nav{
+      position:sticky; top:0;
+      backdrop-filter: blur(10px);
+      background: rgba(11,16,32,.55);
+      border-bottom:1px solid rgba(255,255,255,.08);
+      z-index:20;
+    }
+    .nav-inner{max-width:var(--max); margin:0 auto; padding:12px 18px; display:flex; align-items:center; justify-content:space-between; gap:12px}
+    .brand{display:flex; align-items:center; gap:10px; font-weight:700; letter-spacing:.2px}
+    .dot{width:10px; height:10px; border-radius:99px; background:linear-gradient(135deg, var(--accent), var(--accent2)); box-shadow:0 0 0 4px rgba(124,92,255,.18)}
+    .links{display:flex; flex-wrap:wrap; gap:14px; font-size:14px; color:var(--muted)}
+    .links a{padding:8px 10px; border-radius:10px}
+    .links a:hover{background:rgba(255,255,255,.06); color:var(--text)}
+
+    /* Hero */
+    .hero{padding:40px 0 18px}
+    .hero-grid{display:grid; grid-template-columns: 1.4fr .8fr; gap:18px}
+    @media (max-width: 900px){ .hero-grid{grid-template-columns:1fr; } }
+
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .hero-card{padding:26px}
+    .kicker{color:var(--muted); font-family:var(--mono); font-size:13px}
+    h1{margin:10px 0 10px; font-size:46px; line-height:1.05}
+    @media (max-width: 520px){ h1{font-size:36px} }
+
+    .subtitle{margin:0 0 16px; color:var(--muted); font-size:16px}
+    .pill-row{display:flex; flex-wrap:wrap; gap:10px; margin:16px 0 18px}
+    .pill{padding:8px 10px; border-radius:999px; border:1px solid rgba(255,255,255,.12); background:rgba(255,255,255,.04); font-size:13px; color:#cfd6ff}
+
+    .cta{display:flex; flex-wrap:wrap; gap:10px; margin-top:8px}
+    .btn{display:inline-flex; align-items:center; justify-content:center; gap:10px; padding:10px 14px; border-radius:12px; border:1px solid rgba(255,255,255,.14); background:rgba(255,255,255,.06); color:var(--text); font-weight:600; font-size:14px}
+    .btn:hover{transform: translateY(-1px); background:rgba(255,255,255,.10)}
+    .btn.primary{background:linear-gradient(135deg, rgba(124,92,255,.95), rgba(46,229,157,.70)); border-color:transparent; color:#071019}
+    .btn.primary:hover{filter:saturate(1.05) brightness(1.02)}
+    .btn svg{width:16px; height:16px}
+
+    /* Side card */
+    .side{padding:18px 18px 16px}
+    .avatar{
+      width:100%;
+      aspect-ratio: 1 / 1;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,.12);
+      background:
+        radial-gradient(420px 260px at 20% 25%, rgba(124,92,255,.38), transparent 55%),
+        radial-gradient(320px 240px at 75% 35%, rgba(46,229,157,.22), transparent 55%),
+        rgba(255,255,255,.06);
+      display:flex; align-items:center; justify-content:center;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.04);
+      overflow:hidden;
+    }
+    .avatar span{font-family:var(--mono); color:rgba(231,236,255,.75); font-size:14px; text-align:center; padding:14px}
+    .mini{margin-top:12px; display:grid; gap:8px; color:var(--muted); font-size:14px}
+    .mini b{color:var(--text)}
+    .tagline{margin-top:10px; padding:10px 12px; border-radius:14px; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.10); color:#cfd6ff; font-size:13px}
+
+    /* Sections */
+    section{margin-top:18px}
+    .section-card{padding:22px}
+    .section-title{display:flex; align-items:baseline; justify-content:space-between; gap:12px; margin:0 0 10px}
+    .section-title h2{margin:0; font-size:22px}
+    .section-title .hint{color:var(--muted); font-size:13px; font-family:var(--mono)}
+
+    .grid{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+    @media (max-width: 900px){ .grid{grid-template-columns:1fr;} }
+
+    .item{padding:14px; border-radius:16px; border:1px solid rgba(255,255,255,.10); background:rgba(255,255,255,.04)}
+    .item h3{margin:0 0 6px; font-size:16px}
+    .item p{margin:0; color:var(--muted); font-size:14px}
+    .meta{margin-top:10px; display:flex; flex-wrap:wrap; gap:8px; color:#cfd6ff; font-size:12px; font-family:var(--mono)}
+    .chip{padding:6px 8px; border-radius:999px; border:1px solid rgba(255,255,255,.12); background:rgba(255,255,255,.03)}
+
+    /* Footer */
+    footer{margin-top:26px; color:var(--muted); font-size:13px; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:10px}
+    .social{display:flex; gap:10px; flex-wrap:wrap}
+    .social a{padding:8px 10px; border-radius:12px; border:1px solid rgba(255,255,255,.10); background:rgba(255,255,255,.03)}
+    .social a:hover{background:rgba(255,255,255,.08); color:var(--text)}
+
+    /* Small helper */
+    .sep{height:1px; background:rgba(255,255,255,.08); margin:14px 0}
+  </style>
+</head>
+<body>
+  <div class="nav">
+    <div class="nav-inner">
+      <div class="brand">
+        <div class="dot"></div>
+        <a href="#top">Bryce McKeon</a>
+      </div>
+      <div class="links">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+    
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </div>
+
+  <main id="top" class="wrap">
+    <div class="hero">
+      <div class="hero-grid">
+        <div class="card hero-card">
+          <div class="kicker">BIO / RESUME • ONE-PAGE SITE</div>
+          <h1>Hi — I’m Bryce.</h1>
+          <p class="subtitle">
+            I’m a finance student / builder focused on analytics, modeling, and creating tools that make decisions easier.
+            <br />
+            <span style="color:#cfd6ff">Texas A&M finance student • interested in investment research and automation.</span>
+          </p>
+
+          <div class="pill-row">
+            <div class="pill">College Station / Bryan, TX</div>
+            <div class="pill">Finance • Analytics</div>
+            <div class="pill">Excel • Automation</div>
+          </div>
+
+          <div class="cta">
+            <a class="btn primary" href="mailto:brycemckeon@gmail.com">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6h16v12H4V6Z" stroke="currentColor" stroke-width="2"/><path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="2"/></svg>
+              Contact me
+            </a>
+           
+            <a class="btn" href="https://www.linkedin.com/in/bryce-mckeon-733480281/" target="_blank" rel="noreferrer">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.5 9.5V18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M6.5 6.5h0" stroke="currentColor" stroke-width="4" stroke-linecap="round"/><path d="M10.5 18v-5.2c0-1.9 1.2-3.3 3-3.3 1.7 0 3 1.4 3 3.3V18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+              LinkedIn
+            </a>
+            <a class="btn" href="McKeon, Bryce_MaysTexasA&M.pdf" target="_blank">
+  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M6 2h8l4 4v16H6V2Z" stroke="currentColor" stroke-width="2"/>
+    <path d="M14 2v4h4" stroke="currentColor" stroke-width="2"/>
+    <path d="M9 13h6M9 17h6M9 9h2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  </svg>
+  Resume
+</a>
+          </div>
+        </div>
+
+        <div class="card side">
+          <div class="avatar" aria-label="Profile image placeholder">
+            <span>
+              Add your headshot here<br/>
+              <span style="opacity:.75">(replace this box with an <b>&lt;img&gt;</b>)</span>
+            </span>
+          </div>
+          <div class="mini">
+            <div><b>Role:</b> Finance / Analytics</div>
+            <div><b>Focus:</b> Modeling, automation, markets</div>
+            <div><b>Currently:</b> Student studying at Mays Business School </div>
+          </div>
+          <div class="tagline"> Currently looking for a summer internship </div>
+        </div>
+      </div>
+    </div>
+
+    <section id="about" class="card section-card">
+      <div class="section-title">
+        <h2>About</h2>
+        <div class="hint"></div>
+      </div>
+      <p style="margin:0; color:var(--muted)">
+        I am going into my last year at Texas A&M, and will graduate from Mays Business School in December 2026. Besides School, I spend my time watching sports like football and basketball, playing pickeleball
+        and golf with friends, and skiing in the mountains of Colorado.
+      </p>
+    </section>
+
+    <section id="experience" class="card section-card">
+      <div class="section-title">
+        <h2>Experience</h2>
+        <div class="hint">jobs • leadership • campus orgs</div>
+      </div>
+      <div class="grid">
+        <div class="item">
+          <h3>Intern / Gringos Mexican Kitchen</h3>
+          <p>As an intern for Gringos Mexican Kitchen my main focus was revising budgets for each of their 18 
+            restaurants, and working with my superiors to find ways to minimize their restaurants expenses.
+          One of my big projects to contextualize optimal labor budgets was a Labor Forecast spreadsheet that I created using OfficeScripts.</p>
+          <div class="meta">
+            <span class="chip">May 2025 - August 2025</span>
+            <span class="chip">Houston</span>
+            <span class="chip">Finance / Accounting</span>
+          </div>
+        </div>
+        <div class="item">
+          <h3>Server / Gringos Mexican Kitchen</h3>
+          <p> During my time as a server at Gringos Mexican Kitchen developed many soft skills, and learned how to sell to customers
+            Another important lesson I learned during my time as a server was the value of a consumer because they are what keeps businesses dors open.</p>
+          <div class="meta">
+            <span class="chip"> February 2024 – M 2025</span>
+            <span class="chip"> College Station </span>
+            <span class="chip">Customer Service</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  
+
+    <section id="skills" class="card section-card">
+      <div class="section-title">
+        <h2>Skills</h2>
+        <div class="hint"></div>
+      </div>
+      <div class="grid">
+        <div class="item">
+          <h3>Technical</h3>
+          <p>Excel • Office Scripts • Financial analysis • Asset Pricing</p>
+        </div>
+        <div class="item">
+          <h3>Strengths</h3>
+          <p>Structured thinking • Communication • Detail-oriented • Creative Thinker</p>
+        </div>
+      </div>
+    </section>
+
+    
